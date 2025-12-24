@@ -1,0 +1,18 @@
+[project]
+name = "datasim"
+version = "0.0.1"
+description = "Declarative synthetic data generator for ML"
+authors = [
+    { name = "Ugoke" }
+]
+license = "MIT"
+readme = "README.md"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Testing",
+    "Topic :: Utilities",
+]
+requires-python = ">=3.9"
