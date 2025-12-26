@@ -8,6 +8,7 @@ from datasim.fields.nullable import Nullable
 from datasim.fields.datetime import Date, DateTime
 from datasim.fields.list import List
 from datasim.fields.dict import Dict
+from datasim.writers.base import Writer
 
 
-__all__ = ["BaseDataGen", "Int", "Float", "Str", "Bool", "Field", "Choice", "Nullable", "Sequence", "Date", "DateTime", "Dict", "List"]
+__all__ = ["BaseDataGen", "Int", "Float", "Str", "Bool", "Field", "Choice", "Nullable", "Sequence", "Date", "DateTime", "Dict", "List", "Writer"]

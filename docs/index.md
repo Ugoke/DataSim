@@ -7,5 +7,6 @@
 - [Quick Start](quick_start.md)
 - [Data Configuration](usage/configuration_data.md)
 - [Custom Fields](usage/custom_fields.md)
+- [Custom Writers](usage/custom_writers.md)
 
 Start with the [Quick Start](quick_start.md) to create a dataset for testing or training your model in just 1 minute.

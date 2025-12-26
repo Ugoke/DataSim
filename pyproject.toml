@@ -1,6 +1,6 @@
 [project]
 name = "datasim"
-version = "0.0.1"
+version = "0.0.2"
 description = "Declarative synthetic data generator for ML"
 authors = [
     { name = "Ugoke" }
