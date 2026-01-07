@@ -1,6 +1,6 @@
 [project]
 name = "datasim"
-version = "0.0.2"
+version = "0.0.3"
 description = "Declarative synthetic data generator for ML"
 authors = [
     { name = "Ugoke" }
@@ -14,5 +14,8 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Topic :: Software Development :: Testing",
     "Topic :: Utilities",
+]
+dependencies = [
+    "tqdm>=4.67.1"
 ]
 requires-python = ">=3.9"

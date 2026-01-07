@@ -1,4 +1,5 @@
 import random
+from tqdm import tqdm
 
 from datasim.generators.row import RowGenerator
 from datasim.writers import get_writer
@@ -10,6 +11,7 @@ class DatasetGenerator:
         self.fields = schema._fields
         self.count = schema.__count__
         self.writer = get_writer(schema.__file_type__)
+        self.log = schema.__log__
         
         if schema.__seed__ is not None:
             random.seed(schema.__seed__)
@@ -19,7 +21,9 @@ class DatasetGenerator:
         rows = []
         row_gen = RowGenerator(self.fields)
 
-        for _ in range(self.count):
+        iterator = tqdm(range(self.count)) if self.log else range(self.count)
+        
+        for _ in iterator:
             rows.append(row_gen.generate())
 
         self.writer.write(path, rows)

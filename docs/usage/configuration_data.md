@@ -9,12 +9,14 @@ class UserData(BaseDataGen):
     __count__ = 100  # Number of records that will be generated
     __file_type__ = "csv"  # Output file format (CSV, JSON)
     __seed__ = None # Optional seed for reproducible data generation
+    __log__ = True # Logging
     
     id: Int(min=1, max=1000)
 ```
 - `__count__` - the number of records to be generated. If not specified, the value will be 100
 - `__file_type__` - output file format (e.g. `"csv"` or `"json"`). If you don’t specify anything, it will default to csv
 - `__seed__` - providing a seed ensures reproducible data generation across runs
+- `__log__` - enables or disables logging of the data generation process
 
 ## 2. Defining fields
 ### All fields inherit from the base class `Field` and must be used as annotated attributes within a class that inherits from `BaseDataGen`.

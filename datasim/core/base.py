@@ -13,6 +13,7 @@ class BaseDataGen(metaclass=DataGenMeta):
     __count__ = 100
     __file_type__ = "csv"
     __seed__: int = None
+    __log__ = True
 
     @classmethod
     def generate(cls, path):
