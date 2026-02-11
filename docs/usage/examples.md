@@ -45,11 +45,11 @@ The function receives `context` - a dictionary with previously generated fields 
 class RealEstate(BaseDataGen):
     __count__ = 10
 
-    location: Choice(["city_center", "near_center", "suburbs"])
-    area: Float(min=25, max=200, precision=1)
-    last_renovation: Date(start="1995-01-01", end=TODAY.isoformat())
-    price: Float(func=calculate_price)
-    title: Str(func=lambda ctx: f"{ctx['area']} m² apartment in {ctx['location']}")
+    location = Choice(["city_center", "near_center", "suburbs"])
+    area = Float(min=25, max=200, precision=1)
+    last_renovation = Date(start="1995-01-01", end=TODAY.isoformat())
+    price = Float(func=calculate_price)
+    title = Str(func=lambda ctx: f"{ctx['area']} m² apartment in {ctx['location']}")
 ```
 ### Field dependencies
 - `price` depends on: `area`, `location`, `last_renovation`
@@ -59,7 +59,7 @@ class RealEstate(BaseDataGen):
 ---
 ## Generating the file
 ```python
-RealEstate.generate("data.csv")
+RealEstate.generate_and_save("data.csv", "csv")
 ```
 ---
 ## Generated output example

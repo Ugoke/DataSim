@@ -7,11 +7,13 @@ Create a Python file in which you define a class with fields for generating data
 from datasim import BaseDataGen, Int, Str
 
 class UserData(BaseDataGen):
-    __count__ = 100  # Number of records
-    id: Int(min=1, max=1000)  # Generating integers
-    name: Str()  # Generating Strings
+    __count__ = 100  # Number of rows to generate
+    id = Int(min=1, max=1000)  # Generating integers
+    name = Str()  # Generating Strings
 
-UserData.generate("user_data.csv")  # Writing data to a file
+data = UserData.generate() #At this point no data is generated yet. Data generation happens automatically on first access.
+
+data.save("users.csv", "csv")
 ```
 
 ### 🚀 2. Start generation

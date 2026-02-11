@@ -1,22 +1,30 @@
+from datasim.generators.dataset import DatasetGenerator
 
 
 class DataGenMeta(type):
     def __new__(mcls, name, bases, namespace):
-        fields = {
-            k: v for k, v in namespace.get("__annotations__", {}).items()
-        }
+        fields = {}
+
+        for key, value in namespace.items():
+            if not key.startswith("__") and not callable(value):
+                fields[key] = value
+
         namespace["_fields"] = fields
+
         return super().__new__(mcls, name, bases, namespace)
 
 
 class BaseDataGen(metaclass=DataGenMeta):
-    __count__ = 100
-    __file_type__ = "csv"
+    __count__: int = 100
     __seed__: int = None
-    __log__ = True
+    __log__: bool = True
 
     @classmethod
-    def generate(cls, path):
-        from datasim.generators.dataset import DatasetGenerator
-        gen = DatasetGenerator(cls)
-        gen.write(path)
+    def generate(cls) -> DatasetGenerator:
+        return DatasetGenerator(cls)
+    
+    @classmethod
+    def generate_and_save(cls, path:str, file_type:str) -> DatasetGenerator:
+        data = cls.generate()
+        data.save(path, file_type)
+        return data

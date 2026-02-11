@@ -27,11 +27,11 @@ class Bool(Field):
 class User(BaseDataGen):
     __count__ = 10
 
-    id: Int(min=1, max=100)
-    username: Str()
-    is_staff: Bool()
+    id = Int(min=1, max=100)
+    username = Str()
+    is_staff = Bool()
 
-User.generate("data.csv")
+User.generate_and_save("data.csv", "csv")
 ```
 ## Using `context` in custom fields
 ### The `base_generation` method takes a `context` argument - a dictionary with already generated fields of the current row.
@@ -42,8 +42,8 @@ class IsAdult(Field):
 ```
 ```python
 class User(BaseDataGen):
-    age: Int(min=1, max=90)
-    is_adult: IsAdult()
+    age = Int(min=1, max=90)
+    is_adult = IsAdult()
 ```
 
 ⚠️ Important

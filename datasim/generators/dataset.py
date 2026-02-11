@@ -7,23 +7,50 @@ from datasim.writers import get_writer
 
 class DatasetGenerator:
     def __init__(self, schema):
-        self.schema = schema
-        self.fields = schema._fields
-        self.count = schema.__count__
-        self.writer = get_writer(schema.__file_type__)
-        self.log = schema.__log__
+        self._schema = schema
+        self._fields = schema._fields
+        self._count = schema.__count__
+        self._log = schema.__log__
+        self._rows = None
         
         if schema.__seed__ is not None:
             random.seed(schema.__seed__)
 
 
-    def write(self, path):
-        rows = []
-        row_gen = RowGenerator(self.fields)
+    def _generate_rows(self):
+        if self._rows is not None:
+            return self._rows
 
-        iterator = tqdm(range(self.count)) if self.log else range(self.count)
-        
+        rows = []
+        row_gen = RowGenerator(self._fields)
+        iterator = tqdm(range(self._count)) if self._log else range(self._count)
+
         for _ in iterator:
             rows.append(row_gen.generate())
 
-        self.writer.write(path, rows)
+        self._rows = rows
+        return rows
+
+
+    def save(self, path, file_type):
+        writer = get_writer(file_type)
+        rows = self._generate_rows()
+        writer.write(path, rows)
+
+
+    def head(self, n=5):
+        rows = self._generate_rows()
+        return rows[:n]
+    
+
+    def tail(self, n=5):
+        rows = self._generate_rows()
+        return rows[-n:]
+    
+
+    def all(self):
+        return self._generate_rows()
+    
+
+    def len(self):
+        return len(self._generate_rows())

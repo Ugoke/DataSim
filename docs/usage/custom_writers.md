@@ -26,10 +26,10 @@ from datasim import BaseDataGen, Sequence, Str
 
 class UserData(BaseDataGen):
     __count__ = 10
-    __file_type__ = CSVWriter  # Specify the custom writer here
 
-    id: Sequence()
-    name: Str()
+    id = Sequence()
+    name = Str()
 
-UserData.generate("data.csv")
+data = UserData.generate()
+data.save("data.mycsv", CSVWriter)
 ```
